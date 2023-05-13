@@ -12,6 +12,14 @@ class BaseModel():
      class BaseModel definition
 
      Attributes:
+        id: str => unique UUID assigned to instance on creation
+        created_at: datetime => timestamp of instance creation
+        updated_at: datetime => timestamp of update made to instance
+
+    Methods:
+        __init__(self, **kwargs) => Constructor to initialize new instance
+        __str__(self) => returns string representation of an instance
+        save(self) => updates updated_at attribute
     """
 
     def __init__(self, **kwargs):
