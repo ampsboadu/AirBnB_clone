@@ -20,11 +20,14 @@ class BaseModel():
         __init__(self, **kwargs) => Constructor to initialize new instance
         __str__(self) => returns string representation of an instance
         save(self) => updates updated_at attribute
+        to_dict(self) => return key/value dict representation of an instance
     """
 
     def __init__(self, **kwargs):
         """
         initializes BaseModel class
+
+        creates now instance only when kwargs is empty
         """
         if kwargs is None or len(kwargs) == 0:
             self.id = str(uuid.uuid4())
