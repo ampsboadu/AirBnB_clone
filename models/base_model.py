@@ -62,7 +62,7 @@ class BaseModel():
 
     def to_dict(self):
         """
-        Returns a dictionary containing all keys/values of __dict__ of the instance
+        Returns dictionary containing keys/values of __dict__ of the instance
         """
         dict_copy = self.__dict__.copy()
         dict_copy["__class__"] = self.__class__.__name__
