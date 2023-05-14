@@ -7,6 +7,7 @@ Module base_model contains class BaseModel
 import uuid
 from datetime import datetime
 
+
 class BaseModel():
     """
      class BaseModel definition
@@ -23,7 +24,7 @@ class BaseModel():
         to_dict(self) => return key/value dict representation of an instance
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         """
         initializes BaseModel class
 
@@ -41,8 +42,6 @@ class BaseModel():
                 if key not in ('created_at', 'updated_at', '__class__'):
                     self.__dict__[key] = value
 
-
-
     def __str__(self):
         """
         Returns str representation of BaseModel
@@ -56,7 +55,6 @@ class BaseModel():
         Updates updated_at to current datetime
         """
         self.updated_at = datetime.now()
-
 
     def to_dict(self):
         """
