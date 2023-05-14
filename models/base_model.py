@@ -6,6 +6,7 @@ Module base_model contains class BaseModel
 
 import uuid
 from datetime import datetime
+import models
 
 
 class BaseModel():
@@ -34,6 +35,7 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
         else:
             ISO_fmt = '%Y-%m-%dT%H:%M:%S.%f'
             self.created_at = datetime.strptime(kwargs['created_at'], ISO_fmt)
@@ -53,8 +55,10 @@ class BaseModel():
     def save(self):
         """
         Updates updated_at to current datetime
+        save instance to JSON serialization
         """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """
