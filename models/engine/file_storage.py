@@ -40,3 +40,14 @@ class FileStorage():
             obj: class object => BaseModel or Child Models
         """
         self.__objects[obj.__class__.__name__+"."+obj.id] = obj
+
+    def save(self):
+        """
+        serializes __objects to the JSON file (path: __file_path)
+        """
+        my_dict = dict()
+        for key, value in self.__objects.items():
+            my_dict[key] = value.to_dict()
+
+        with open(self.__file_path, 'w', encording='utf-8') as file:
+            file.write(json.dumps(my_dict))
