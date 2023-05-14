@@ -5,7 +5,7 @@ module file_storage contains class FileStorage
 
 import json
 from os import path
-
+from models.base_model import BaseModel
 
 class FileStorage():
     """
@@ -51,3 +51,18 @@ class FileStorage():
 
         with open(self.__file_path, 'w', encording='utf-8') as file:
             file.write(json.dumps(my_dict))
+
+    def reload(self):
+        """
+        deserializes the JSON file to __objects 
+        (only if the JSON file (__file_path) exists
+        otherwise, do nothing. 
+        If the file doesn’t exist, no exception should be raised)
+        """
+        if path.exists(self.__file_path) is True:
+            with open(self.__file_path, 'r', encoding='utf-8') as file:
+                json_load = json.load(file)
+            for key, value in json_load.items():
+                self.__objects[key] = BaseModel(**value)
+        else:
+            pass:
